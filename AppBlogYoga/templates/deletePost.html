@@ -8,6 +8,8 @@ Borrar post
 
 {% block content %}
 
+{% if user.is_authenticated %}
+
 <h1>Borrar post</h1>
 <br/><br/>
 
@@ -21,5 +23,11 @@ Borrar post
     <button class="btn btn-secondary">Borrar</button> 
 
 </div>
+
+{% else %}
+
+No tenés permiso para borrar  
+    
+{% endif %}
 
 {% endblock %}

@@ -11,13 +11,18 @@
 <h1>{{ post.titulo }}</h1>
 <small>Por: 
     {{ post.autor }} - 
-    {{post.fecha}} - </small>
-<a href="{% url 'updatePost' post.pk %}">Editar</a>
-<a href="{% url 'deletePost' post.pk %}">Borrar</a>
+    {{post.fecha}}  </small>
+
+    {% if user.is_authenticated %}
+    - <a href="{% url 'updatePost' post.pk %}">Editar</a>
+
+    <a href="{% url 'deletePost' post.pk %}">Borrar</a>
+
+    {% endif %}
 </br>
 <hr>
 <br/>
-{{ post.cuerpo }}
+{{ post.cuerpo | safe }}
 
 <br/><br/>
 <a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>

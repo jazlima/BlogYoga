@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<h1>Post</h1>
+{% if category_posts %}
+
+<h1> {{ cat }} </h1>
 
 <ul>
-{% for post in object_list %}
-
-    <li><a href="{% url 'detailPost' post.pk %}">{{ post.titulo }}</a> 
-    - <a href="{% url 'category' post.categoria%}">{{ post.categoria }}</a> - {{ post.autor }} - {{post.fecha}} 
+{% for post in category_posts %}
+<li><a href="{% url 'detailPost' post.pk %}">{{ post.titulo }}</a> 
+     - {{ post.autor }} - {{post.fecha}} 
 
     {% if user.is_authenticated %}
     - <a href="{% url 'updatePost' post.pk %}">Editar</a>
@@ -21,5 +22,9 @@
 
 {% endfor %}
 </ul>
+
+{% else %}
+    <h2>Categoría inexistente </h2>
+{% endif %}
 
 {% endblock %}
