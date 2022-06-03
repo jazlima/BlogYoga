@@ -2,19 +2,24 @@
 
 {% block title %} 
 
-Crear post
+Borrar post
  
 {% endblock %}
 
 {% block content %}
 
-<h1>Crear post</h1>
+<h1>Borrar post</h1>
 <br/><br/>
+
+<h3>Borrar: {{post.titulo}}</h3>
+<br/> 
+
 <div class="form-group">
     <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    
-    <button class="btn btn-secondary">Crear</button> 
+    <strong>Estás segurx?</strong><br/><br/>
+    <button class="btn btn-secondary">Borrar</button> 
+
 </div>
+
 {% endblock %}

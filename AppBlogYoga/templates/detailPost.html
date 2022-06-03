@@ -9,7 +9,12 @@
 {% block content %}
 
 <h1>{{ post.titulo }}</h1>
-<small>Por: {{ post.autor }}</small></br>
+<small>Por: 
+    {{ post.autor }} - 
+    {{post.fecha}} - </small>
+<a href="{% url 'updatePost' post.pk %}">Editar</a>
+<a href="{% url 'deletePost' post.pk %}">Borrar</a>
+</br>
 <hr>
 <br/>
 {{ post.cuerpo }}
