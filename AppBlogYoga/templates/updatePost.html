@@ -9,17 +9,22 @@ Editar post
 {% block content %}
 
 {% if user.is_authenticated %}
+    {% if user.id == post.autor.id %}
 
-<h1>Editar post</h1>
-<br/><br/>
-<div class="form-group">
-    <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
+        <h1>Editar post</h1>
+        <br/><br/>
+        <div class="form-group">
+            <form method="POST">{% csrf_token %}
+                {{ form.as_p }}
     
-    <button class="btn btn-secondary">Modificar</button> 
-</div>
+        <button class="btn btn-secondary">Modificar</button> 
+        </div>
+    {% else %}
 
+        No tenés permiso para editar este post
+
+    {% endif %}
+    
 {% else %}
 
 No tenés permiso para editar 
