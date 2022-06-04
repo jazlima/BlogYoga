@@ -11,12 +11,16 @@ class Post(models.Model):
     fecha=models.DateTimeField(auto_now_add=True)
     imagen=models.ImageField(upload_to='blog/', blank=True, null=True)
     categoria=models.CharField(max_length=200, default='yoga')
+    likes=models.ManyToManyField(User, related_name='blog_post')
 
     def __str__(self):
         return self.titulo+' | '+str(self.autor) 
 
     def get_absolute_url(self):
         return reverse('home')
+
+    def total_likes(self):
+        return self.likes.count()
 
 class Category(models.Model):
     nombre=models.CharField(max_length=200)
