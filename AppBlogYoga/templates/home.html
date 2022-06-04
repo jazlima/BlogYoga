@@ -8,7 +8,7 @@
 {% for post in object_list %}
 
     <li><a href="{% url 'detailPost' post.pk %}">{{ post.titulo }}</a> 
-    - <a href="{% url 'category' post.categoria%}">{{ post.categoria }}</a> - {{ post.autor }} - {{post.fecha}} 
+    - <a href="{% url 'category' post.categoria %}">{{ post.categoria }}</a> - {{ post.autor }} - {{post.fecha}} 
 
     {% if user.is_authenticated %}
     - <a href="{% url 'updatePost' post.pk %}">Editar</a>
