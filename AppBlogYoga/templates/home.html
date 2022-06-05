@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Post</h1>
+<h1>Posts</h1>
 
 <ul>
 {% for post in object_list %}
@@ -21,8 +21,7 @@
         {% endif %}
 
     {% endif %}
-
-    {{ post.cuerpo | slice:":200" | safe }}</li>
+    {{ post.extracto}}</li>
 
 {% endfor %}
 </ul>

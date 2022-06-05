@@ -14,6 +14,7 @@ class Post(models.Model):
     imagen=models.ImageField(upload_to='blog/', blank=True, null=True)
     categoria=models.CharField(max_length=200, default='yoga')
     likes=models.ManyToManyField(User, related_name='blog_post')
+    extracto=models.CharField(max_length=200)
 
     def __str__(self):
         return self.titulo+' | '+str(self.autor) 
