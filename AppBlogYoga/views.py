@@ -87,6 +87,9 @@ class AddComment(CreateView):
         return super().form_valid(form)
     
     success_url=reverse_lazy('home')
+
+def about(request):
+    return render (request, "about.html") 
     
     
     
