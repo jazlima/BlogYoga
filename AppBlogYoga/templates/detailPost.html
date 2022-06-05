@@ -27,6 +27,13 @@
 </br>
 <hr>
 <br/>
+
+{% if post.imagen %}
+    
+    <img src="{{ post.imagen.url }}"></br></br>
+
+{% endif %}
+
 {{ post.cuerpo | safe }}
 
 <br/><br/>
