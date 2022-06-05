@@ -1,0 +1,30 @@
+{% extends 'padre.html' %}
+
+{% block title %} 
+
+Crear página de perfil
+ 
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Crear página de perfil</h1>
+<br/><br/>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <button class="btn btn-secondary">Crear</button> 
+</div>
+    
+{% else %}
+
+No tenés permiso para crear 
+    
+{% endif %}
+
+{% endblock %}

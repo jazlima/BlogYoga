@@ -1,0 +1,37 @@
+{% extends 'padre.html' %}
+
+{% block title %} 
+
+Editar página de perfil
+ 
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    {% if user.id == profile.user.id %}
+
+        <h1>Editar página de perfil</h1>
+        <br/><br/>
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+    
+            {{ form.as_p }}
+    
+            <button class="btn btn-secondary">Guardar cambios</button> 
+        </div>
+    
+        {% else %}
+
+        No sos el usuarix correcto para editar este perfil 
+    
+        {% endif %}
+    
+    {% else %}
+
+    No tenés permiso para editar este perfil
+
+    {% endif %}
+
+{% endblock %}

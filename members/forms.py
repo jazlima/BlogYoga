@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
+from AppBlogYoga.models import Profile
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -26,4 +27,14 @@ class UpdateForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
+
+class ProfilePageForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=['bio', 'avatar', 'instagram_url']
+        widgets={
+        'bio': forms.Textarea(attrs={'class': 'form-control'}),
+        #'avatar': forms.FileInput(attrs={'class': 'form-control'}),
+        'instagram_url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 

@@ -59,8 +59,25 @@
               <a class="nav-link" href="{% url 'createCategory' %}">Crear categoría</a>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'updateProfile' %}">Editar perfil</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                Perfil
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'updateProfile' %}">Ajustes</a>
+
+                {% if user.profile.id %}
+
+                    <a class="dropdown-item" href="{% url 'editProfile' user.profile.id %}">Editar página de perfil</a>
+                    <a class="dropdown-item" href="{% url 'showProfile' user.profile.id %}">Mostrar página de perfil</a>
+
+                {% else %}
+                    
+                    <a class="dropdown-item" href="{% url 'createProfilePage' %}">Crear página de perfil</a>
+
+                {% endif %}
+
+              </div>
             </li>
 
             <li class="nav-item">
