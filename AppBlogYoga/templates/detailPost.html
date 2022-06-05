@@ -38,10 +38,6 @@
 
 {{ post.cuerpo | safe }}
 
-<br/><br/>
-<a href="{% url 'home' %}" class="btn btn-secondary">Volver</a>
-
-<br/><br/>
 <hr>
 <br/>
 <form action="{% url 'like_post' post.pk %}" method="POST">{% csrf_token %}
@@ -58,7 +54,6 @@
 </form>
 
 </br></br>
-
 <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-2">
@@ -81,5 +76,24 @@
       </div>
     </div>
   </div>
-
+  <h2>Comentarios</h2>
+  <br/>
+  {% if not post.comments.all %}
+      Todavía no hay comentarios<a href="{% url 'addComment' post.pk %}">Agregar</a>
+  {% else %}
+  <a href="{% url 'addComment' post.pk %}">Agregar comentario</a>
+  <br/><br/>
+      {% for comment in post.comments.all %}
+          <strong>
+              {{ comment.name }} - {{ comment.date }}
+          </strong>
+          <br/>
+          {{ comment.body }}
+          <br/><br/>
+          
+      {% endfor %}
+      <a href="{% url 'addComment' post.pk %}">Agregar comentario</a>
+  {% endif %}
+  
+  <br/>
 {% endblock %}
