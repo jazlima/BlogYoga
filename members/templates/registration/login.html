@@ -13,8 +13,16 @@ Login
 <div class="form-group">
     <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    
+    <div class="form-group">
+    <input type="text" class="form-control" name="username" placeholder="Usuario">
+    </div>
+    <div class="form-group">
+    <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
     <button class="btn btn-secondary">Loguearse</button> 
 </div>
+</form>
+<br/>
+Si no sos usuario te podés registrar<a href="{% url 'register' %}"> acá</a>
+
 {% endblock %}
