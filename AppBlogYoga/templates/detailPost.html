@@ -1,5 +1,7 @@
 {% extends 'padre.html' %}
 
+{% load static %}
+
 {% block title %} 
 
 {{ post.titulo }}
@@ -54,5 +56,29 @@
 {% endif %}   
         -  {{ total_likes}} Likes
 </form>
+
+</br></br>
+
+<div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-2">
+          {% if post.autor.profile.avatar %}
+            <img src="{{ post.autor.profile.avatar.url }}" height="200" width="200">
+          {% else %}
+          <img src="{% static 'AppBlogYoga/images/avatar_default.jpg' %}" height="200" width="200">
+          {% endif %}
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.autor }}</h5>
+          <p class="small text-muted">
+              {% if post.autor.profile.instagram_url %}
+                <a href="{{ post.autor.profile.instagram_url }}">IG</a></p>
+              {% endif %}
+          <p class="card-text">{{ post.autor.profile.bio }}</p>
+      </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock %}

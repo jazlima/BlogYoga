@@ -33,4 +33,13 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('home')
+
+class Profile(models.Model):
+    user=models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio=models.TextField()
+    avatar=models.ImageField(upload_to='images/profile/', blank=True, null=True)
+    instagram_url=models.CharField(max_length=200, blank=True, null=True)
+    
+    def __str__(self):
+        return str(self.user)
     
