@@ -72,6 +72,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ post.autor }}</h5>
           <p class="small text-muted">
+              <a href="{% url 'showProfile' post.autor.profile.id %}">Página de perfil</a> |
               {% if post.autor.profile.instagram_url %}
                 <a href="{{ post.autor.profile.instagram_url }}">IG</a></p>
               {% endif %}
