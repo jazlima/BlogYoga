@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: blogyoga-web
+    ports:
+      - "8000:8000"
+    # Monta el proyecto para usar tu db.sqlite3 y media/ actuales,
+    # y para que los cambios de código se reflejen sin reconstruir.
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1

@@ -1,11 +1,6 @@
 from django import forms
 from .models import Post, Category, Comment
 
-choices=Category.objects.all().values_list('nombre', 'nombre')
-choice_list=[]
-for item in choices:
-    choice_list.append(item)
-
 class PostForm(forms.ModelForm):
 
     class Meta:
@@ -17,10 +12,17 @@ class PostForm(forms.ModelForm):
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
             #'autor': forms.Select(attrs={'class': 'form-control'}), 
             'autor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id':'rivas', 'type':'hidden'}),
-            'categoria': forms.Select(choices= choice_list, attrs={'class': 'form-control'}), 
             'extracto': forms.Textarea(attrs={'class': 'form-control'}),
-            
-}
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Se consulta acá y no al importar el módulo: así migrate puede correr
+        # sobre una base vacía y el desplegable toma categorías nuevas.
+        self.fields['categoria'].widget = forms.Select(
+            choices=[(c.nombre, c.nombre) for c in Category.objects.all()],
+            attrs={'class': 'form-control'},
+        )
 
 class UpdateForm(forms.ModelForm):
 

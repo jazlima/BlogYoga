@@ -1,0 +1,4 @@
+# Stack original del proyecto (junio 2022): Django 4.0.4 sobre Python 3.10
+Django==4.0.4
+django-ckeditor==6.4.1
+Pillow==10.4.0
